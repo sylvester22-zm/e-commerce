@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header::common-header">
+<meta charset="ISO-8859-1">
+<title>Account</title>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+ --><!--  -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="common/header::navbar"></div>
+<h3 style="color:green;text-align: center;">welcome </h3>
+
+
+ <div class="formcontainer">
+
+<form class="form" id="login" th:action="@{/login}" method="post">
+
+           <legend style="color:black;text-align:center" >LOGIN</legend>
+           <div th:if="${param.error != null}" style="color:red;text-align:center">Incorrect username or password.</div>
+           
+            <div class="form__message form__message--error"></div>
+            <div class="form__input-group">
+                <input type="text" name="username" class="form__input" autofocus placeholder="Username or email">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
+                <input name="password" type="password" class="form__input" autofocus placeholder="Password">
+                <div class="form__input-error-message"></div>
+            </div>
+            <button class="btn btn-primary" type="submit">Login</button>
+            <p class="form__text">
+                <a th:href="@{/forgotPassword}" class="form__link">Forgot your password?</a>
+            </p>
+            <p class="form__text">
+                <a class="form__link" th:href="@{/register}" id="linkCreateAccount">Don't have an account? Create account</a>
+            </p>
+        </form>
+       
+       <!--  Creating A Usual Account -->
+    </div>
+    <div class="container">
+     <div th:replace="common/header :: footer" />
+    </div>
+   		<script th:src="@{/js/script.js}"></script>
+
+
+</body>
+</html>

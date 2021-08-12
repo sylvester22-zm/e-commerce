@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header::common-header">
+<meta charset="ISO-8859-1">
+<title></title>
+
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="common/header::navbar"></div>
+	
+	<div class="container">
+	    	
+    	    		<div style="color:green;text-align:center;" th:if="${cartAddSuccess}" class="alert alert-info">product added to cart successfully</div>
+	
+	<form th:action="@{/cart/add}" method="post">
+    	<input hidden="hidden" th:field="*{product.id}" />
+    	<div class="row" style="margin-top: 50px;">
+    		<div class="col-xs-3">
+    			
+    			<img alt="" class="img-responsive shelf-book"
+						th:src="*{'data:image/jpeg;base64,'+{product.productImage}} " />
+    		</div>
+    		<div class="col-xs-9">
+    			<!-- <h3><span th:if="${addBookSuccess}" style="color: forestgreen"><i class="fa fa-check" aria-hidden="true" style="color: forestgreen"></i>Added to cart.</span></h3>
+    			<h3><span th:if="${notEnoughStock}" style="color: red">Oops, only <span th:text="${book.inStockNumber}"></span> In Stock.</span></h3> -->
+    			<h3 th:text="${product.productname}"></h3>
+    			<div class="row" style="margin-left: 50px">
+    				<div class="col-xs-5" >
+    					
+    				</div>
+    				
+    				<div class="col-xs-9">
+    						<div class="panel-body">
+    							<div class="row">
+    								<div class="col-xs-6 text-center" >
+    									<h5 >Price:<span style="color:#db3208;">$<span th:text="${product.currentprice}"></span></span></h5>
+    									<p>Was AT : <span style="text-decoration: line-through">$<span th:text="${product.wasprice}"></span></span></p>
+    									<!-- <p>You save: $<span th:text="${#numbers.formatDecimal((product.wasprice - product.currentprice), 0, 'COMMA', 2, 'POINT' )}"></span></p> -->
+    									<span>Qty: </span>
+    								 <select name="quantity">
+    										<option th:each="quantity : ${quantityList}" th:value="${quantity}" th:text="${quantity}">
+    										</option>
+    									</select> 
+    								</div>
+    								<div class="col-xs-6">
+    									<h4  style="color: green">In Stock</h4>
+    									<h4  style="color: green">Only <span > </span> In Stock</h4>
+    									<h4  style="color:darkred;">Unavailable</h4>
+    									<button type="submit" class="btn btn-warning" style="color:black;border:1px solid black; padding: 10px 40px 10px 40px;">Add to Cart</button>
+    								</div>
+    							</div>
+    						</div>
+    					
+    				</div>
+    			</div>
+    			
+    			<hr/>
+    			<p th:utext="${product.description}"></p>
+    		</div>
+    	</div>
+    </form>
+	</div>
+	 <div th:replace="common/header :: footer" />
+	 		<script th:src="@{/js/script.js}"></script>
+	 
+</body>
+</html>

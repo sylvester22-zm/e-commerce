@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header::common-header">
+<meta charset="ISO-8859-1">
+<title>www.</title>
+
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="common/header::navbar"></div>
+	<h3 style="color: green; text-align: center;">Your Orders</h3>
+	<div class="container">
+    <div class="col-sm">
+    <div class="panel-body">
+    <table class="table table-sm table-inverse">
+     <thead>
+     <tr>
+     <th>Order Date</th>
+     <th>Paid With</th>
+       <th>Id</th>
+         <th> Total</th>
+     <tr>
+     </thead>
+    
+   <tbody>
+   <tr data-th-each="order:${orders}">
+   <th th:text="${order.orderDate}"></th>
+   <th th:text="${order.payment.type}"/>
+      <th th:text="${order.id}"></th>
+   <th th:text="${order.orderTotal}"></th>
+   <tr>
+   </tbody>
+   </table>
+    </div>
+    </div>
+    
+		
+</div>
+	 <div class="container">
+     <div th:replace="common/header :: footer" />
+    </div>
+	<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

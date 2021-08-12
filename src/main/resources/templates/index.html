@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header::common-header">
+<meta charset="ISO-8859-1">
+<title>www.</title>
+
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="common/header::navbar"></div>
+	
+	<div class="container">
+		<div class="book-item" data-th-each="product:${products}">
+			<!-- <a th:href="@{/fullNews?id=}+${news.id}"> -->
+			<div class="row">
+				<a th:href="@{/Detail(id=${product.id})}"><div class="col-xs-3" style="margin: 10px">
+					<img alt="" class="img-responsive shelf-book"
+						th:src="*{'data:image/jpeg;base64,'+{product.productImage}} " />
+
+				</div></a>
+				<a th:href="@{/Detail(id=${product.id})}"><div class="col-xs-3">
+				<span style="color:green" th:text="${product.productname}"></span></a><br>
+					<span
+						style="font-size: x-large; color: #db3208;">$<span
+							th:text="${#numbers.formatDecimal(product.currentprice, 0 , 'COMMA', 2, 'POINT')}"></span></span><br>
+
+					<span style="text-decoration: line-through;color:black">$<span
+						th:text="${#numbers.formatDecimal(product.wasprice, 0 , 'COMMA', 2, 'POINT')}"></span></span><br>
+						<span th:text="${product.description}"></span>
+				</div>
+
+
+				<h1></h1>
+
+			</div>
+
+		</div>
+		<div th:replace="common/header :: footer" ></div>
+	
+		<script th:src="@{/js/script.js}"></script>
+	
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header::common-header">
+<meta charset="ISO-8859-1">
+<title>www.</title>
+
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="common/header::navbar"></div>
+	<h3 style="color: green; text-align: center;">Items In Your Cart</h3>
+	<div class="container">
+
+		<div class="col-xs-3 text-right">
+			<a class="btn btn-warning" th:href="@{/checkout(id=${myCart.id})}">Check Out</a>
+		</div>
+		<p  th:if="${emptyCart}"style="color:red;text-align:center;width: auto;" class="alert alert-info lead">Ooops Add Something In your Cart To Checkout</p>
+		<div class="row">
+						<div class="col-sm-6 small">
+							<h4 style="margin-left:70px">Products</h4>
+						</div>
+						<div class="col-sm-3 small">
+							<h4 style="margin-left:85px">Price</h4>
+						</div>
+						<div class="col-sm-3 small">
+							<h4 style="margin-left:-5px">Quantity</h4>
+						</div>
+					</div>
+					<hr style="background-color:black">
+	
+		<div style="margin: 5px"  class="row">
+		 <form th:action="@{/cart/updateQuantity}" method="post">
+		 <div  style="margin: 8px"class="row" data-th-each="cartProduct:${productsInCart}">
+		
+  
+    <div class="col-sm-2">
+     <img alt="" class="img-responsive shelf-book"
+						th:src="*{'data:image/jpeg;base64,'+{cartProduct.product.productImage}} " />
+    </div>
+    <div class="col-sm-6">
+   
+    <h4  style="color:green" th:text="${cartProduct.product.productname}"></h4>
+    <a  style="margin-top:40px" th:href="@{/cart/deletecart(id=${cartProduct.id})}" class="btn btn-danger">Delete</a>
+   <!--  <a th:href="@{/shoppingCart/removeItem?id=}+${cartItem.id}">delete</a> -->
+    </div>
+    
+    <div style="margin-left: 30px"class="col-sm justify-content-end ">
+    <span	style="font-size: x-large; color: #db3208; ">$<span
+						th:text="${#numbers.formatDecimal(cartProduct.product.currentprice, 0 , 'COMMA', 2, 'POINT')}"></span></span><br>
+
+					<span style="text-decoration: line-through; color: black">$<span
+						th:text="${#numbers.formatDecimal(cartProduct.product.wasprice, 0 , 'COMMA', 2, 'POINT')}"></span></span>
+						</div>
+			
+				
+    
+    <div style="margin-left: 90px"class="col-sm ">
+    	<input hidden="hidden" name="id" th:value="${cartProduct.id}" />
+								 <input th:id="${cartProduct.id}"
+									 th:name="quantity"  class="form-control updateQuantity" th:value="${cartProduct.quantity}" />
+								<button style="display:none" th:id="'update'+${cartProduct.id}"
+									 type="submit"
+									class="btn btn-warning btn-xs">Update</button>
+							
+    </div>
+    </div>	
+   </form>
+   </div>
+   <div class="col-xs-3 text-right">
+
+			<h3>Total Cost</h3>
+			<hr style="background-color: black">
+			<span style="font-size: 30px"
+				th:text="${#numbers.formatDecimal(myCart.GrandTotal, 0 , 'COMMA', 2, 'POINT')}"></span>
+		</div>
+  </div>
+
+
+		<!--  -->
+		
+	
+	<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>
