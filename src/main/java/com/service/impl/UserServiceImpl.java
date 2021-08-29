@@ -68,6 +68,8 @@ public class UserServiceImpl implements UserService {
 			ShoppingCart shoppingCart = new ShoppingCart();
 			shoppingCart.setUser(user);
 			user.setShoppingcart(shoppingCart);
+			//persisting sellers personal products functionality
+			
 
 			localUser = userRepository.save(user);
 
@@ -81,24 +83,21 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(user);
 	}
 
-	@Override
-	public User createAdmin(User adminuser, Set<UserRole> userRole) {
-		User admin = userRepository.findByEmail(adminuser.getEmail());
-
-		if (admin != null) {
-			LOG.info("admin {} already exists. Nothing will be done.", adminuser.getUsername());
-		} else {
-			for (UserRole ur : userRole) {
-				roleRepository.save(ur.getRole());
-			}
-
-			adminuser.getUserRoles().addAll(userRole);
-
-			admin = userRepository.save(adminuser);
-		}
-
-		return admin;
-	}
+	/*
+	 * @Override public User createAdmin(User adminuser, Set<UserRole> userRole) {
+	 * User admin = userRepository.findByEmail(adminuser.getEmail());
+	 * 
+	 * if (admin != null) {
+	 * LOG.info("admin {} already exists. Nothing will be done.",
+	 * adminuser.getUsername()); } else { for (UserRole ur : userRole) {
+	 * roleRepository.save(ur.getRole()); }
+	 * 
+	 * adminuser.getUserRoles().addAll(userRole);
+	 * 
+	 * admin = userRepository.save(adminuser); }
+	 * 
+	 * return admin; }
+	 */
 
 	@Override
 	public User findByid(Long id) {

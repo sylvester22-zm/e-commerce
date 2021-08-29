@@ -17,7 +17,6 @@ public interface UserService {
 	
 	User createUser(User user, Set<UserRole> userRoles) throws Exception;
 
-	User createAdmin(User adminuser, Set<UserRole> userRole);
 
 
 

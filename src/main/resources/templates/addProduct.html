@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header::common-header">
+<meta charset="ISO-8859-1">
+<title>Add Product</title>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+ -->
+<!--  -->
+<link th:href="@{/css/myaccount.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="common/header :: navbar" />
+	<div class="container">
+	<a style="margin-left: 90%" th:href="@{/product/List}" type="submit" class="btn btn-primary" >View Products</a>
+<form th:action="@{/product/add}" method="post" enctype="multipart/form-data">
+		<div class="row gutters">
+			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+				<h3>
+					<legend style="text-align: center;">Product Details</legend>
+				</h3>
+			</div>
+			
+
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+				<div class="form-group">
+					<label for="">Product Name</label> <input type="text"
+						name="productname" th:value="${product.productname}" placeholder="name of product" class="form-control"
+						id="productname">
+				</div>
+				<div class="form-group">
+					<label for="">Current Price</label> <input type="text" name="currentprice"
+						th:value="${product.currentprice}"placeholder="current price" class="form-control"
+						id="productname">
+				</div>
+
+				<div class="form-group">
+					<label for="">Was Price</label> <input type="text" name="wasprice"
+						th:value="${product.wasprice}" placeholder="was at price" class="form-control"
+						id="productname">
+				</div>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+
+				<div class="form-group">
+					<label for="">Description</label> <input name="description"
+						th:value="${product.description}"class="form-control" placeholder="description">
+				</div>
+				<div class="form-group">
+					<label for="">Product Image</label> <input
+						type="file" name="file" class="form-control"
+						placeholder=" product image">
+				</div>
+				<div class="form-group">
+              <label>Status</label><br>
+					<label><input value="true" type="radio" name="status"checked="checked" /> Available </label>
+					 <label><input value="false" type="radio" name="status" /> Unavailable </label> <span class="help-block">
+					</span>
+				</div>
+			
+			</div>
+
+
+			<div class="form-group"
+				style="width: 200px; margin-left: auto; margin-right: auto;">
+				<button type="submit" name="submit" class="btn btn-primary">Submit</button>
+			</div>
+
+
+		</div>
+</form>
+	</div>
+
+
+
+	<script src="/js/script.js"></script>
+
+</body>
+</html>

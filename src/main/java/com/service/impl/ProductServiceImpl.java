@@ -10,39 +10,29 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.Repository.ProductRepository;
 import com.domain.Product;
-import com.domain.User;
 import com.service.ProductService;
 
 @Service
-public  class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
-	
 	@Autowired
 	private ProductRepository productRepository;
-	@Autowired
-	ProductService productService;
+
+
 	@Override
-	public List<Product> findAll() {
-		// TODO Auto-generated method stub
+	public List<Product> findAll() { // TODO Auto-generated method stub
 		return (List<Product>) productRepository.findAll();
 	}
 
-	
-	  public Product findOne(Long id)
-	  { return productRepository.getOne(id);
-	  }
-	 
-
 	@Override
-	public  Product saveProduct(Product product,MultipartFile image) {
-		
+	public Product saveProduct(Product product, MultipartFile image) {
+
 		try {
 			product.setProductImage(Base64.getEncoder().encodeToString(image.getBytes()));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		return productRepository.save(product);
 	}
 
@@ -53,12 +43,17 @@ public  class ProductServiceImpl implements ProductService{
 
 	@Override
 	public void delete(Long product) {
-	 productRepository.deleteById(product);;
+		productRepository.deleteById(product);
+		;
 	}
 
-   @Override
-   public List<Product> findByProduct(String product) {
-	   return productRepository.findByproductnameContaining(product);
-   }
+	@Override
+	public List<Product> findByProduct(String product) {
+		return productRepository.findByproductnameContaining(product);
+	}
+
+	public Product findOne(Long id) {
+		return productRepository.getOne(id);
+	}
 
 }

@@ -2,12 +2,15 @@ package com.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,17 +23,26 @@ public class Product {
 	String currentprice;
 	String wasprice;
 	String description;
-	
+
 	@Lob
 	String productImage;
 	boolean status;
-	//products onto users store
+	// products onto users store
 	@OneToMany(mappedBy = "product")
 	@JsonIgnore
 	private List<ProductToCart> productToCartList;
 
+
+
+	public List<ProductToCart> getProductToCartList() {
+		return productToCartList;
+	}
+
 	
-public Product(){}
+
+	public Product() {
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -42,6 +54,7 @@ public Product(){}
 	public String getProductname() {
 		return productname;
 	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -85,5 +98,11 @@ public Product(){}
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	/*
+	 * public void setProductToStore(StoreProduct product) {
+	 * this.storeProduct=product;
+	 * 
+	 * }
+	 */
 
 }

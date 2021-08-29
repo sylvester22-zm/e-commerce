@@ -25,20 +25,19 @@ import com.service.UserService;
 @RequestMapping("/cart")
 public class CartController {
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
     
+	
+	
 	@Autowired
-	private OrderService orderService;
-	@Autowired
-	private ProductService productService;
-	@Autowired
-	CartProductService cartProductService;
+	private CartProductService cartProductService;
 	
 	 @Autowired
-	 ShoppingCartService shoppingCartService;
+	private  ShoppingCartService shoppingCartService;
 	 
-	 
+	 @Autowired
+	 private ProductService productService;
 	 
 	@RequestMapping("/add")
 	public String AddTocart(@ModelAttribute("product") Product product,@ModelAttribute("quantity") String quantity,Model model,

@@ -58,6 +58,8 @@ public class User implements UserDetails{
 	public ShoppingCart getShoppingcart() {
 		return shoppingcart;
 	}
+	
+	
 	public void setShoppingcart(ShoppingCart shoppingcart) {
 		this.shoppingcart = shoppingcart;
 	}
