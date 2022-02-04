@@ -27,9 +27,6 @@ public class CartController {
 	@Autowired
 	private UserService userService;
 	
-    
-	
-	
 	@Autowired
 	private CartProductService cartProductService;
 	
